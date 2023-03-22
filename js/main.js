@@ -40,7 +40,7 @@ const pecas = {
 controle.forEach( (elemento) => {
     elemento.addEventListener("click", (e) => {
         manipulaDados(e.target.dataset.controle, e.target.parentNode);
-        atualizaEstatisticas(e.target.dataset.pecas);
+        atualizaEstatisticas(e.target.dataset.pecas, e.target.dataset.controle);
     })
 })
 
@@ -55,16 +55,23 @@ function manipulaDados(operacao, controle) {
     }
 }
 
-// quando a function 'atualizaEstatisticas' for chamada, aplicamos uma função arrow para cada elemento na array através de forEach, em que transformaremos o valor em string de 'data-estatistica' em valor em número através de parseInt. Ao clicar em determinada peça, iremos atualizar/somar o valor das data-estatistica através do valor em const pecas para x peça;
+// quando a function 'atualizaEstatisticas' for chamada, aplicamos uma função arrow para cada elemento na array através de forEach, em que transformaremos o valor em string de 'data-estatistica' em valor em número através de parseInt. Ao clicar em determinada peça, iremos atualizar/somar/subtrair o valor das data-estatistica através do valor em const pecas para x peça;
+
+// se o valor do parâmetro 'operacao' for '-', removeremos o valor da peça clicada de data-estatistica. Caso contrário, adicionaremos o valor especificado ao valor de data-estatistica;
 
 // - pecas[peca] --> irá buscar qual valor aplicar baseado na peça clicada (e.target.dataset.pecas). Ex: pecas['braco'] --> irá aplicar os valores de braco às estatísticas 'forca', 'poder', 'energia' e 'velocidade';
 // - [elemento.dataset.estatistica] --> data-attribute no qual o valor será adicionado.
 
 
-function atualizaEstatisticas(peca) {
+function atualizaEstatisticas(peca, operacao) {
   
   estatistica.forEach ( (elemento) => {
-  elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+
+    if(operacao === '-') {
+      elemento.textContent = parseInt(elemento.textContent) - pecas[peca][elemento.dataset.estatistica]
+    } else {
+      elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]    
+    }
   
 })
 }
