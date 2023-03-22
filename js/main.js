@@ -34,6 +34,7 @@ const pecas = {
   }
 }
 
+
 // ao utilizarmos o forEach, aplicamos uma função arrow para cada elemento da array, em que quando o elemento .controle-ajuste(representado pela data-attribute 'data-controle') for clicado, será chamada a função manipulaDados, com os parâmetros de 'operacão', que irá buscar o elemento em que o evento ocorreu (data-controle) e o valor dele, e também irá buscar o parâmetro 'controle', que irá buscar o elemento pai de 'data-controle' (div class="controle"), possibilitando a funcionalidade dos botões em qualquer um dos 5 componentes do robô. 
 // O botão também irá chamar a função 'atualizaEstatisticas' de acordo com o botão em que o evento foi acionado. 
 
@@ -75,3 +76,7 @@ function atualizaEstatisticas(peca, operacao) {
   
 })
 }
+
+ function trocaImagem(cor) {
+   document.getElementById("robotron").src="img/Robotron 2000 - " + cor + ".png"
+ }
